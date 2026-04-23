@@ -39,7 +39,7 @@ This repository contains the code and models for my MSc dissertation at the Univ
   - Trains a **ResNet‑18** classifier on cropped cells.  
   - Evaluates clean classification accuracy.  
   - Applies patches (160×160) to cropped cells and computes accuracy drop.
-- **Outputs:** CNN clean and patched accuracies (Table 4.5).
+- **Outputs:** CNN clean and patched accuracies.
 
 ## Main Results Summary
 | Model     | Condition | RBC Acc | WBC Acc | Platelets Acc |
