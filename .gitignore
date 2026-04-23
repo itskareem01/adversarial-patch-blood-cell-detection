@@ -1,0 +1,19 @@
+
+# Large datasets
+combined_dataset/
+BCCD/
+TXL-PBC_Dataset/
+cropped_cells/
+
+# Model files are okay, but you may list them if you want to exclude
+# *.pt
+# *.pth
+
+# Temporary files
+.ipynb_checkpoints/
+__pycache__/
+*.log
+*.tmp
+
+# Colab runtime files
+sample_data/
