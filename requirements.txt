@@ -1,0 +1,15 @@
+# Core dependencies for YOLO and deep learning
+ultralytics>=8.4.38
+torch>=2.0.0
+torchvision>=0.15.0
+
+# Image processing and numerical operations
+opencv-python>=4.5.0
+numpy>=1.21.0
+
+# Visualisation and progress bars
+matplotlib>=3.4.0
+tqdm>=4.62.0
+
+# Machine learning metrics and classification
+scikit-learn>=0.24.0
