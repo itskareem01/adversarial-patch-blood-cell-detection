@@ -9,17 +9,48 @@ This repository contains the code and models for my MSc dissertation at the Univ
 - **Patch Attack Evaluation:** A framework to overlay plain patches (gray, white, black, shaky) at random positions and evaluate counting accuracy.
 - **CNN Comparison:** A ResNet‑18 classifier on cropped cells for classification robustness analysis.
 
-## Main Results
-- **YOLOv10m Baseline:** Achieved **94.80%** (RBC), **98.36%** (WBC), and **95.65%** (Platelets) counting accuracy.
-- **Vulnerability to Plain Patches:** The same model showed a ≈30 percentage point drop in RBC accuracy with a 160×160 pixel patch.
-- **Model Dependency:** YOLOv8s displayed different vulnerability patterns, including a surprising improvement in platelet accuracy with solid patches.
+## Reproduction Steps (Run notebooks in this order)
 
+### 1. `Blood_Cell_project.ipynb`
+- **What it does:**  
+  - Trains **YOLOv10m** on the BCCD dataset (clean baseline).  
+  - Then merges BCCD with the **TXL‑PBC** dataset.  
+  - Trains YOLOv10m on the **combined dataset**.  
+  - Evaluates clean counting accuracy on the test set.
+- **Outputs:** Trained model weights, clean baseline results.
+
+### 2. `patch_attack_evaluation.ipynb`
+- **What it does:**  
+  - Loads the YOLOv10m model trained on the combined dataset.  
+  - Applies plain patches (gray, white, black, shaky) at random positions.  
+  - Computes counting accuracy drop.  
+- **Outputs:** Patched accuracies.
+
+### 3. `patch_attack__evaluation_yolov8s.ipynb`
+- **What it does:**  
+  - Trains **YOLOv8s** on the **combined dataset**.  
+  - Evaluates clean baseline.  
+  - Applies the same plain patches and computes accuracy drop.  
+- **Outputs:** YOLOv8s clean and patched accuracies.
+
+### 4. `patch_attach__evaluation_CNN.ipynb`
+- **What it does:**  
+  - Crops individual cells from the combined dataset.  
+  - Trains a **ResNet‑18** classifier on cropped cells.  
+  - Evaluates clean classification accuracy.  
+  - Applies patches (160×160) to cropped cells and computes accuracy drop.
+- **Outputs:** CNN clean and patched accuracies (Table 4.5).
+
+## Main Results Summary
 | Model     | Condition | RBC Acc | WBC Acc | Platelets Acc |
 |-----------|-----------|---------|---------|---------------|
 | YOLOv10m  | Clean     | 94.80%  | 98.36%  | 95.65%        |
 | YOLOv10m  | Gray patch| 65.10%  | 93.93%  | 83.77%        |
 | YOLOv8s   | Clean     | 90.45%  | 88.52%  | 85.51%        |
 | YOLOv8s   | Gray patch| 68.13%  | 78.03%  | 96.23%        |
+| CNN       | Clean     |                     100.00%       |
+| CNN       | Gray patch|                     84.80%        |
+
 
 *(Full results tables are in the dissertation.)*
 
